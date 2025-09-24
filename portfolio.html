@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Clavo — Developer</title>
+  <meta name="description" content="Portfolio Clavo — Developer " />
+  <style>
+    :root{
+      --bg:#0b1020; --panel:#0f1724; --accent:#7c3aed; --muted:#98a0b3; --glass: rgba(255,255,255,0.03);
+      --mono: 'SFMono-Regular', ui-monospace, SFMono, Menlo, Monaco, monospace;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.12), transparent), radial-gradient(900px 500px at 90% 90%, rgba(16,185,129,0.03), transparent), var(--bg); color:#e6eef8; -webkit-font-smoothing:antialiased;}
+    a{color:inherit;text-decoration:none}
+    header{display:flex;justify-content:space-between;align-items:center;padding:28px 48px;position:sticky;top:0;background:linear-gradient(0deg, rgba(255,255,255,0.02), transparent);backdrop-filter: blur(6px);z-index:40}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700}
+    .brand .logo{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#06b6d4);display:flex;align-items:center;justify-content:center;font-weight:800;color:white}
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{padding:8px 12px;border-radius:8px;color:var(--muted);font-size:15px}
+    nav a:hover{color:white;background:var(--glass)}
+
+    .container{max-width:1100px;margin:60px auto;padding:0 28px}
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:36px;align-items:center}
+    .hero-left h1{margin:0;font-size:46px;line-height:1.02}
+    .role{display:flex;gap:12px;align-items:center;margin-top:14px}
+    .role .rotator{font-weight:700;color:var(--accent);min-width:160px}
+    .summary{color:var(--muted);margin-top:18px;max-width:70%}
+    .cta{margin-top:22px;display:flex;gap:12px}
+    .btn{padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);cursor:pointer}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#06b6d4);box-shadow:0 6px 20px rgba(124,58,237,0.18);color:#fff}
+
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:20px;border-radius:14px;border:1px solid rgba(255,255,255,0.04)}
+    .hero-right{display:flex;flex-direction:column;gap:18px}
+    .stats{display:flex;gap:12px}
+    .stat{flex:1;text-align:center}
+    .projects{margin-top:52px}
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    .project{padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
+    .project h3{margin:6px 0 0 0}
+    .section-title{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+
+    footer{padding:60px 28px;color:var(--muted);text-align:center}
+
+    /* floating blobs */
+    .bg-blob{position:fixed;pointer-events:none;z-index:0;filter:blur(70px);opacity:0.7}
+    .blob1{width:420px;height:420px;background:radial-gradient(circle at 30% 30%, rgba(124,58,237,0.28), transparent);left:-80px;top:-60px}
+    .blob2{width:360px;height:360px;background:radial-gradient(circle at 70% 70%, rgba(6,182,212,0.18), transparent);right:-80px;bottom:-80px}
+
+    /* responsive */
+    @media (max-width:900px){.hero{grid-template-columns:1fr;}.hero-left h1{font-size:34px}.hero-right{order:2}}
+  </style>
+</head>
+<body>
+  <div class="bg-blob blob1"></div>
+  <div class="bg-blob blob2"></div>
+  <header>
+    <div class="brand"><div class="logo">C</div><div>Clavo</div></div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-left">
+        <h1>Hi, I'm <span style="color:var(--accent)">Clavo</span>.</h1>
+        <div class="role">
+          <div class="card rotator" id="rotator">Developer</div>
+          <div style="color:var(--muted)">I build reliable software and i'm learning kernel development.</div>
+        </div>
+        <p class="summary">I focus on low-level systems, making software for other developers, and learn more in the process.</p>
+        <div class="cta">
+          <a class="btn" href="#contact">Get in touch</a>
+        </div>
+      </div>
+
+      <aside class="hero-right">
+        <div class="card">
+          <h4>Quick stats</h4>
+          <div class="stats">
+            <div class="stat"><div style="font-weight:700;font-size:20px">4+</div><div style="font-size:12px;color:var(--muted)">years exp</div></div>
+            <div class="stat"><div style="font-weight:700;font-size:20px">40+</div><div style="font-size:12px;color:var(--muted)">projects</div></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h4>Featured</h4>
+          <p style="margin:8px 0 0 0;color:var(--muted)">I'm trying to specialize myself into kernel development.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section id="about" style="margin-top:60px">
+      <div class="section-title"><h2>About</h2></div>
+      <div class="card" style="padding:20px;max-width:900px"> 
+        <p style="color:var(--muted)">I am a developer and security researcher focusing on systems, usermode applications, and applications for other developers. I like clean UIs, reliable code, and elegant solutions to complex problems.</p>
+      </div>
+    </section>
+
+    <section id="contact" style="margin-top:60px">
+      <div class="section-title"><h2>Contact</h2></div>
+      <div class="card" style="padding:18px;max-width:700px">
+          <a class="btn" href="https://discord.com/invite/3jBPcKqUW6" target="_blank" rel="noopener noreferrer">Discord</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © <span id="year"></span> Clavo — Built with ❤️ <span style="color:var(--muted)"></span>
+  </footer>
+
+  <script>
+    // rotate role titles
+    const roles = ['Developer','Security Researcher','Systems Engineer'];
+    let i=0; const rEl=document.getElementById('rotator');
+    setInterval(()=>{ i=(i+1)%roles.length; rEl.style.opacity=0; setTimeout(()=>{ rEl.textContent=roles[i]; rEl.style.opacity=1 },250) }, 2500);
+
+    // set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // smooth scrolling for header links
+    document.querySelectorAll('header nav a').forEach(a=>a.addEventListener('click', e=>{ e.preventDefault(); const targ=document.querySelector(a.getAttribute('href')); if(targ) targ.scrollIntoView({behavior:'smooth',block:'start'}) }))
+  </script>
+</body>
+</html>
