@@ -52,50 +52,59 @@
   </style>
 </head>
 <body>
-  <div class="bg-blob blob1"></div>
-  <div class="bg-blob blob2"></div>
-  <header>
-    <div class="brand"><div class="logo">C</div><div>Clavo</div></div>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+    <div class="bg-blob blob1"></div>
+    <div class="bg-blob blob2"></div>
+    <header>
+        <div class="brand"><div class="logo">C</div><div>Clavo</div></div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+</body>
 
-  <main class="container">
+<main class="container">
     <section class="hero">
-      <div class="hero-left">
-        <h1>Hi, I'm <span style="color:var(--accent)">Clavo</span>.</h1>
-        <div class="role">
-          <div class="card rotator" id="rotator">Developer</div>
-          <div style="color:var(--muted)">I build reliable software and i'm learning kernel development.</div>
+        <div class="hero-left">
+            <h1>Hi, I'm <span style="color:var(--accent)">Clavo</span>.</h1>
+            <div class="role">
+              <div class="card rotator" id="rotator">Developer</div>
+              <div style="color:var(--muted);">I build reliable software and i'm learning kernel driver development.</div>
+            </div>
+            <p class="summary">I focus on developing software for other developers and learn in the process.</p>
+            <div class="cta">
+              <a class="btn" href="#contact">Get in touch!</a>
+            </div>
         </div>
-        <p class="summary">I focus on low-level systems, making software for other developers, and learn more in the process.</p>
-        <div class="cta">
-          <a class="btn" href="#contact">Get in touch</a>
-        </div>
-      </div>
 
-      <aside class="hero-right">
-        <div class="card">
-          <h4>Quick stats</h4>
-          <div class="stats">
-            <div class="stat"><div style="font-weight:700;font-size:20px">1+</div><div style="font-size:12px;color:var(--muted)">years exp</div></div>
-            <div class="stat"><div style="font-weight:700;font-size:20px">15+</div><div style="font-size:12px;color:var(--muted)">projects</div></div>
+        <aside class="hero-right">
+          <div class="card">
+            <h4>Statistics</h4>
+            <div class="stats">
+              <div class="stat"><div style="font-weight: 700;font-size: 20px;">1+</div><div style="font-size: 12px;color:var(--muted)">Years Experience</div></div>
+              <div class="stat"><div style="font-weight: 700;font-size: 20px;">10+</div><div style="font-size: 12px;color:var(--muted)">Projects Done</div></div>
+            </div>
           </div>
-        </div>
 
-        <div class="card">
-          <h4>Featured</h4>
-          <p style="margin:8px 0 0 0;color:var(--muted)">I'm trying to specialize myself into kernel development.</p>
-        </div>
-      </aside>
+          <div class="card">
+            <h4>Featured</h4>
+            <p style="margin: 8px 0 0 0;color: var(--muted);">I'm learning C++, C#, HTML, JavaScript, ETC. And im focused on finding solutions to problems!</p>
+          </div>
+        </aside>
     </section>
 
     <section id="about" style="margin-top:60px">
       <div class="section-title"><h2>About</h2></div>
       <div class="card" style="padding:20px;max-width:900px"> 
-        <p style="color:var(--muted)">I am a developer and security researcher focusing on systems, usermode applications, and applications for other developers. I like clean UIs, reliable code, and elegant solutions to complex problems.</p>
+        <p style="color:var(--muted)">I am a developer focusing on systems, usermode applications, and applications for other developers. I like clean UIs, reliable code, and elegant solutions to complex problems.</p>
+      </div>
+    </section>
+
+    <section id="projects" style="margin-top:60px;">
+      <div class="section-title"><h2>Projects</h2></div>
+      <div class="card" style="padding:20px;max-width:990px;">
+        <a class="btn" href="https://imclavo.xyz/" target="_blank" rel="noopener noreferrer">Portfolio</a>
       </div>
     </section>
 
@@ -103,20 +112,30 @@
       <div class="section-title"><h2>Contact</h2></div>
       <div class="card" style="padding:18px;max-width:700px">
           <a class="btn" href="https://discord.com/invite/3jBPcKqUW6" target="_blank" rel="noopener noreferrer">Discord</a>
+          <a class="btn" href="https://www.youtube.com/@RealClavo" target="_blank" rel="noopener noreferrer">YouTube</a>
       </div>
     </section>
+</main>
 
-  </main>
-
-  <footer>
+<footer>
     © <span id="year"></span> Clavo — Built with ❤️ <span style="color:var(--muted)"></span>
   </footer>
 
   <script>
     // rotate role titles
-    const roles = ['Developer','Security Researcher','Systems Engineer'];
-    let i=0; const rEl=document.getElementById('rotator');
-    setInterval(()=>{ i=(i+1)%roles.length; rEl.style.opacity=0; setTimeout(()=>{ rEl.textContent=roles[i]; rEl.style.opacity=1 },250) }, 2500);
+    const roles = ['Developer', 'Software Development Student', 'Software Tester', 'Code Debugger'];
+    let i = 0;
+    const rEl = document.getElementById('rotator');
+    
+    setInterval(() => {
+      rEl.style.transition = 'opacity 0.6s ease';
+      rEl.style.opacity = 0;
+      setTimeout(() => {
+        i = (i + 1) % roles.length;
+        rEl.textContent = roles[i];
+        rEl.style.opacity = 1;
+      }, 600);
+    }, 3000);
 
     // set year
     document.getElementById('year').textContent = new Date().getFullYear();
