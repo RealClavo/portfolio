@@ -82,7 +82,7 @@
         <div class="hero-left">
             <h1>Hi, I'm <span style="color:var(--accent)">Clavo</span>.</h1>
             <div class="role">
-              <div class="card rotator" id="rotator">Developer</div>
+              <div class="card rotator"> <span id="rotatorText">Developer</span></div>
               <div style="color:var(--muted);">I build reliable software and i'm learning kernel driver development.</div>
             </div>
             <p class="summary">I focus on developing software for other developers and learn in the process.</p>
@@ -138,16 +138,17 @@
     // rotate role titles
     const roles = ['Developer', 'Software Development Student', 'Software Tester', 'Code Debugger'];
     let i = 0;
-    const rEl = document.getElementById('rotator');
+    const rEl = document.getElementById('rotatorText');
     
     setInterval(() => {
-      rEl.style.transition = 'opacity 0.6s ease';
-      rEl.style.opacity = 0;
-      setTimeout(() => {
-        i = (i + 1) % roles.length;
-        rEl.textContent = roles[i];
-        rEl.style.opacity = 1;
-      }, 600);
+    rEl.style.transition = 'opacity 0.6s ease';
+    rEl.style.opacity = 0;
+    
+    setTimeout(() => {
+    i = (i + 1) % roles.length;
+    rEl.textContent = roles[i];
+    rEl.style.opacity = 1;
+    }, 600);
     }, 3000);
 
     // set year
