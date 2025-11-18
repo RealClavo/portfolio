@@ -2,160 +2,1607 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Clavo — Developer</title>
-  <meta name="description" content="Portfolio Clavo — Developer " />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CLAVO — Developer</title>
+
   <style>
-    :root{
-      --bg:#0b1020; --panel:#0f1724; --accent:#7c3aed; --muted:#98a0b3; --glass: rgba(255,255,255,0.03);
-      --mono: 'SFMono-Regular', ui-monospace, SFMono, Menlo, Monaco, monospace;
+    :root {
+      --bg: #050505;
+      --bg-soft: #080808;
+      --panel: #111111;
+      --panel-soft: #151515;
+      --panel-deep: #1b1b1b;
+
+      --border-soft: #262626;
+      --border: #2f2f2f;
+      --border-strong: #404040;
+
+      --text: #f5f5f5;
+      --text-soft: #d0d0d0;
+      --text-muted: #888888;
+
+      --accent: #ffffff;
+      --accent-soft: rgba(255, 255, 255, 0.16);
+      --accent-subtle: rgba(255, 255, 255, 0.06);
+
+      --radius-xxl: 32px;
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      --radius-pill: 999px;
+
+      --shadow-strong: 0 30px 90px rgba(0, 0, 0, 0.95);
+      --shadow-soft: 0 18px 42px rgba(0, 0, 0, 0.7);
+
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      --font-mono: ui-monospace, Menlo, Monaco, Consolas, "SF Mono", monospace;
+
+      --fast: 0.16s ease-out;
+      --med: 0.26s ease-out;
+      --slow: 0.42s ease-out;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%; margin:0; font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:
-    radial-gradient(1000px 1000px at 10% 10%, rgba(124,58,237,0.12), transparent 70%),
-    radial-gradient(1000px 1000px at 90% 90%, rgba(16,185,129,0.05), transparent 70%),
-    var(--bg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-     color:#e6eef8;
-     -webkit-font-smoothing: antialiased;}
-    a{color:inherit;text-decoration:none}
-    header{display:flex;justify-content:space-between;align-items:center;padding:28px 48px;position:sticky;top:0;background:linear-gradient(0deg, rgba(255,255,255,0.02), transparent);backdrop-filter: blur(6px);z-index:40}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:700}
-    .brand .logo{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#06b6d4);display:flex;align-items:center;justify-content:center;font-weight:800;color:white}
-    nav{display:flex;gap:18px;align-items:center}
-    nav a{padding:8px 12px;border-radius:8px;color:var(--muted);font-size:15px}
-    nav a:hover{color:white;background:var(--glass)}
 
-    .container{max-width:1100px;margin:60px auto;padding:0 28px}
-    .hero{display:grid;grid-template-columns:1fr 360px;gap:36px;align-items:center}
-    .hero-left h1{margin:0;font-size:46px;line-height:1.02}
-    .role{display:flex;gap:12px;align-items:center;margin-top:14px}
-    .role .rotator{font-weight:700;color:var(--accent);min-width:160px}
-    .summary{color:var(--muted);margin-top:18px;max-width:70%}
-    .cta{margin-top:22px;display:flex;gap:12px}
-    .btn{padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);cursor:pointer}
-    .btn.primary{background:linear-gradient(90deg,var(--accent),#06b6d4);box-shadow:0 6px 20px rgba(124,58,237,0.18);color:#fff}
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    .card {
-    background: var(--panel);
-    padding: 20px;
-    border-radius: 14px;
-    border: 1px solid rgba(255,255,255,0.04);}
+    html,
+    body {
+      height: 100%;
+      scroll-behavior: smooth;
+    }
 
-    .hero-right{display:flex;flex-direction:column;gap:18px}
-    .stats{display:flex;gap:12px}
-    .stat{flex:1;text-align:center}
-    .projects{margin-top:52px}
-    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-    .project{padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
-    .project h3{margin:6px 0 0 0}
-    .section-title{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+    body {
+      font-family: var(--font-main);
+      color: var(--text);
+      background: radial-gradient(circle at top, #181818 0, #050505 55%);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      position: relative;
+      overflow-x: hidden;
+    }
 
-    footer{padding:60px 28px;color:var(--muted);text-align:center}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-    /* floating blobs */
-    .bg-blob{position:fixed;pointer-events:none;z-index:0;filter:blur(70px);opacity:0.7}
-    .blob1{width:420px;height:420px;background:radial-gradient(circle at 30% 30%, rgba(124,58,237,0.28), transparent);left:-80px;top:-60px}
-    .blob2{width:360px;height:360px;background:radial-gradient(circle at 70% 70%, rgba(6,182,212,0.18), transparent);right:-80px;bottom:-80px}
+    button {
+      background: none;
+      border: none;
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+    }
 
-    /* responsive */
-    @media (max-width:900px){.hero{grid-template-columns:1fr;}.hero-left h1{font-size:34px}.hero-right{order:2}}
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+
+    #bg-particles {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .bg-noise {
+      pointer-events: none;
+      position: fixed;
+      inset: -50px;
+      z-index: 1;
+      opacity: 0.18;
+      mix-blend-mode: soft-light;
+      background-image:
+        radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18) 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 0.15) 0, transparent 60%),
+        repeating-linear-gradient(
+          60deg,
+          rgba(255, 255, 255, 0.04) 0,
+          rgba(255, 255, 255, 0.04) 1px,
+          transparent 1px,
+          transparent 4px
+        );
+      animation: noiseShift 18s linear infinite alternate;
+    }
+
+    @keyframes noiseShift {
+      0% { transform: translate3d(0,0,0) scale(1); }
+      100% { transform: translate3d(-40px, 20px, 0) scale(1.05); }
+    }
+
+
+    .shell {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .u-mono { font-family: var(--font-mono); }
+    .u-soft { color: var(--text-soft); }
+    .u-muted { color: var(--text-muted); }
+
+    .u-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--accent-soft);
+      background: rgba(0, 0, 0, 0.9);
+      font-size: 10px;
+      font-family: var(--font-mono);
+    }
+
+    .u-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
+    }
+
+    .u-section-title {
+      font-size: 26px;
+      letter-spacing: -0.03em;
+      margin-bottom: 6px;
+    }
+
+    .u-section-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .u-badge {
+      padding: 5px 11px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--accent-soft);
+      background: rgba(0, 0, 0, 0.9);
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--text-soft);
+    }
+
+    .u-tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .u-tag {
+      padding: 5px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--accent-subtle);
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--text-soft);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translate3d(0, 28px, 0) scale(0.98);
+      filter: blur(8px);
+      transition:
+        opacity var(--slow),
+        transform var(--slow),
+        filter var(--slow);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+      filter: blur(0);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(5, 5, 5, 0.9),
+        rgba(5, 5, 5, 0.82),
+        transparent
+      );
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 14px 20px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-wrap {
+      width: 40px;
+      height: 40px;
+      border-radius: 18px;
+      background: radial-gradient(circle at 0 0, #ffffff, #bfbfbf 55%, #2a2a2a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .logo-wrap svg {
+      width: 26px;
+      height: 26px;
+      display: block;
+    }
+
+    .nav-identity {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .nav-name {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+    }
+
+    .nav-role {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: var(--radius-pill);
+      padding: 4px;
+      background: rgba(0, 0, 0, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-link {
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: background var(--fast), color var(--fast), transform var(--fast);
+      white-space: nowrap;
+    }
+
+    .nav-link.active,
+    .nav-link:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.42);
+      background: rgba(0, 0, 0, 0.9);
+      font-size: 10px;
+      font-family: var(--font-mono);
+      color: var(--text-soft);
+    }
+
+    .nav-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #ffffff;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 1);
+    }
+
+    .nav-cta {
+      padding: 7px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid #ffffff;
+      background: #ffffff;
+      color: #000000;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      font-weight: 800;
+      text-transform: uppercase;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 1);
+      transition: transform var(--fast), box-shadow var(--fast), opacity var(--fast);
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 1);
+      opacity: 0.93;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+    }
+
+
+    .hero {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .hero-main {
+      border-radius: var(--radius-xxl);
+      border: 1px solid var(--border-strong);
+      background: linear-gradient(140deg, rgba(17, 17, 17, 0.98), #151515);
+      box-shadow: var(--shadow-strong);
+      padding: 28px 24px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-main::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.12) 0, transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 0.06) 0, transparent 65%);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .hero-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--accent-soft);
+      background: rgba(0, 0, 0, 0.9);
+      font-size: 10px;
+      font-family: var(--font-mono);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+    }
+
+    .hero-title {
+      font-size: clamp(38px, 6vw, 52px);
+      letter-spacing: -0.08em;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 6px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(120deg, #ffffff, #cfcfcf);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-pill {
+      padding: 6px 11px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(0, 0, 0, 0.9);
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--text-soft);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-main {
+      padding: 9px 17px;
+      border-radius: var(--radius-pill);
+      border: 1px solid #000000;
+      background: linear-gradient(140deg, #ffffff, #cfcfcf);
+      color: #000000;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 1);
+      transition: transform var(--fast), box-shadow var(--fast), opacity var(--fast);
+    }
+
+    .btn-main-icon {
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    .btn-main:hover {
+      transform: translateY(-1px) scale(1.01);
+      box-shadow: 0 24px 52px rgba(0, 0, 0, 1);
+      opacity: 0.95;
+    }
+
+    .btn-ghost {
+      padding: 8px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(0, 0, 0, 0.9);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background var(--fast), color var(--fast), transform var(--fast);
+    }
+
+    .btn-ghost-indicator {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .hero-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-meta-pill {
+      padding: 5px 9px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(0, 0, 0, 0.88);
+      font-size: 10px;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+    }
+
+
+    .hero-side {
+      display: grid;
+      gap: 14px;
+    }
+
+    .hero-card {
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      background: var(--panel-soft);
+      padding: 14px 14px 12px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-soft);
+      margin-bottom: 4px;
+    }
+
+    .hero-card-sub {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .hero-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .hero-stat {
+      padding: 7px 8px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: rgba(0, 0, 0, 0.78);
+    }
+
+    .hero-stat-label {
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .hero-stat-value {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+
+    .section {
+      margin-top: 60px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    @media (max-width: 900px) {
+      .skills-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .skill-card {
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-soft);
+      background: var(--panel-soft);
+      padding: 18px 16px 16px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .skill-title {
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .skill-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .skill-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .skill-pill {
+      padding: 4px 8px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--accent-subtle);
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--text-soft);
+    }
+
+
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    @media (max-width: 900px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .projects-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .project-card {
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      background: var(--panel-soft);
+      padding: 18px 16px 14px;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .project-badge {
+      padding: 4px 9px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--accent-soft);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      width: fit-content;
+    }
+
+    .project-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .project-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .project-tags {
+      margin-top: 6px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--text-soft);
+    }
+
+    .project-link {
+      margin-top: 8px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-soft);
+    }
+
+
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    @media (max-width: 900px) {
+      .pricing-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .pricing-card {
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-soft);
+      background: var(--panel-soft);
+      padding: 20px 18px 18px;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .pricing-badge {
+      padding: 4px 9px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--accent-soft);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-soft);
+      width: fit-content;
+    }
+
+    .pricing-name {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .pricing-price {
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .pricing-period {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .pricing-list {
+      list-style: none;
+      display: grid;
+      gap: 6px;
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+
+    .pricing-cta {
+      margin-top: 10px;
+      padding: 7px 12px;
+      border-radius: var(--radius-pill);
+      border: 1px solid #ffffff;
+      background: #ffffff;
+      color: #000;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      align-self: flex-start;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .gallery-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .gallery-item {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: radial-gradient(circle at top, #2a2a2a 0, #101010 55%);
+      position: relative;
+      overflow: hidden;
+      padding: 10px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .gallery-fake-shot {
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0, transparent 50%),
+        repeating-linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.06) 0,
+          rgba(255, 255, 255, 0.06) 1px,
+          transparent 1px,
+          transparent 4px
+        );
+      height: 120px;
+    }
+
+    .gallery-caption {
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--text-soft);
+      font-family: var(--font-mono);
+    }
+
+    .matrix {
+      border-radius: var(--radius-xxl);
+      border: 1px solid var(--border);
+      background: var(--panel);
+      padding: 24px 22px 22px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-size: 12px;
+    }
+
+    .matrix-table tr {
+      border-bottom: 1px dashed var(--border-soft);
+    }
+
+    .matrix-table td {
+      padding: 10px 6px;
+      vertical-align: top;
+    }
+
+    .matrix-table td:first-child {
+      color: var(--text-soft);
+      width: 36%;
+    }
+
+    .timeline {
+      margin-top: 26px;
+      border-top: 1px solid var(--border-soft);
+      padding-top: 16px;
+    }
+
+    .timeline-row {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 10px;
+    }
+
+    .timeline-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #ffffff;
+      margin-top: 5px;
+    }
+
+    .timeline-body {
+      font-size: 12px;
+    }
+
+    .timeline-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+      font-family: var(--font-mono);
+    }
+
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .about-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .about-panel {
+      border-radius: var(--radius-xxl);
+      border: 1px solid var(--border);
+      background: var(--panel-soft);
+      padding: 22px 20px 20px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .contact-panel {
+      border-radius: var(--radius-xxl);
+      border: 1px solid var(--border-soft);
+      background: var(--panel);
+      padding: 22px 20px 20px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .contact-item {
+      padding: 8px 10px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--accent-subtle);
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .contact-label {
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+
+    .contact-value {
+      font-size: 12px;
+    }
+
+    .contact-hint {
+      margin-top: 10px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+  
+
+    footer {
+      margin-top: 60px;
+      padding: 26px 20px 20px;
+      border-top: 1px solid var(--border-soft);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    footer .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .footer-pill {
+      padding: 4px 8px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--accent-soft);
+      background: rgba(0, 0, 0, 0.9);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 10px;
+    }
+
+    @media (max-width: 640px) {
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+    
+    #bg-particles {position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none;}
+    header#top {position: fixed; top: 0; left: 0; width: 100%; z-index: 9999}
+    body {padding-top: 120px;}
+
   </style>
 </head>
 <body>
-    <div class="bg-blob blob1"></div>
-    <div class="bg-blob blob2"></div>
-    <header>
-        <div class="brand"><div class="logo">C</div><div>Clavo</div></div>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
-</body>
+  <canvas id="bg-particles"></canvas>
 
-<main class="container">
+  <div class="bg-noise"></div>
+
+  <header id="top">
+    <div class="nav">
+      <div class="nav-left">
+        <div class="logo-wrap">
+          <svg viewBox="0 0 32 32" aria-hidden="true">
+            <defs>
+              <linearGradient id="clavo-logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#000" />
+                <stop offset="40%" stop-color="#444" />
+                <stop offset="100%" stop-color="#000" />
+              </linearGradient>
+            </defs>
+            <path
+            d="M22 11c-1.1-1.8-3-3-5.3-3-3.9 0-7 3.1-7 7s3.1 7 7 7c2.3 0 4.2-1.2 5.3-3"
+            fill="none" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="nav-identity">
+          <div class="nav-name">CLAVO</div>
+          <div class="nav-role">Developer</div>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <button class="nav-link active" data-target="top">Home</button>
+        <button class="nav-link" data-target="skills">Skills</button>
+        <button class="nav-link" data-target="projects">Projects</button>
+        <button class="nav-link" data-target="services">Services</button>
+        <button class="nav-link" data-target="gallery">Showcase</button>
+        <button class="nav-link" data-target="about">About</button>
+        <button class="nav-link" data-target="contact">Contact</button>
+      </nav>
+
+      <div class="nav-right">
+        <div class="nav-status">
+          <div class="nav-dot"></div>
+          <span>Available for Select Work</span>
+        </div>
+        <a href="#contact" class="nav-cta">Get in Touch</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="shell">
     <section class="hero">
-        <div class="hero-left">
-            <h1>Hi, I'm <span style="color:var(--accent)">Clavo</span>.</h1>
-            <div class="role">
-              <div class="card rotator"> <span id="rotatorText">Developer</span></div>
-              <div style="color:var(--muted);">I build reliable software and i'm learning kernel driver development.</div>
-            </div>
-            <p class="summary">I focus on developing software for other developers and learn in the process.</p>
-            <div class="cta">
-              <a class="btn" href="#contact">Get in touch!</a>
-            </div>
+      <div class="hero-main reveal">
+        <div class="hero-header-row">
+          <div class="hero-kicker">
+            <div class="u-dot"></div>
+            <span class="u-mono" style="letter-spacing:0.16em; text-transform:uppercase;">CLAVO • GAME SYSTEMS</span>
+          </div>
+          <div class="u-chip">
+            <span>Low-Level · Memory · Tools</span>
+          </div>
         </div>
 
-        <aside class="hero-right">
-          <div class="card">
-            <h4>Statistics</h4>
-            <div class="stats">
-              <div class="stat"><div style="font-weight: 700;font-size: 20px;">1+</div><div style="font-size: 12px;color:var(--muted)">Years Experience</div></div>
-              <div class="stat"><div style="font-weight: 700;font-size: 20px;">10+</div><div style="font-size: 12px;color:var(--muted)">Projects Done</div></div>
+        <h1 class="hero-title">
+          <span>Developer.</span>
+        </h1>
+        <p class="hero-sub">
+          CLAVO builds external tools and overlays for games focused on understanding how systems work under the hood and making developers look like wizards.
+        </p>
+
+        <div class="hero-pill-row">
+          <div class="hero-pill">C++</div>
+          <div class="hero-pill">Game Externals</div>
+          <div class="hero-pill">Rendering &amp; Overlays</div>
+          <div class="hero-pill">Memory Tooling</div>
+          <div class="hero-pill">Reverse Engineering</div>
+          <div class="hero-pill">Engine Prototyping</div>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#projects" class="btn-main">
+            <span class="btn-main-icon">→</span>
+            <span>View Work</span>
+          </a>
+          <a href="#about" class="btn-ghost">
+            <div class="btn-ghost-indicator"></div>
+            <span>Who is CLAVO?</span>
+          </a>
+        </div>
+
+        <div class="hero-meta-row">
+          <div class="hero-meta-pill">Specialized in multiplayer game tooling</div>
+          <div class="hero-meta-pill">Custom overlays &amp; debug HUDs</div>
+          <div class="hero-meta-pill">Focus on stability, performance, and polish</div>
+        </div>
+      </div>
+
+      <aside class="hero-side">
+        <article class="hero-card reveal">
+          <div class="hero-card-title">Profile Snapshot</div>
+          <div class="hero-card-sub">At a glance</div>
+
+          <div class="hero-stats-grid">
+            <div class="hero-stat">
+              <div class="hero-stat-label">Experience</div>
+              <div class="hero-stat-value">1+ Years</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-label">Languages</div>
+              <div class="hero-stat-value">C++</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-label">Focus</div>
+              <div class="hero-stat-value">Game Systems</div>
             </div>
           </div>
+        </article>
 
-          <div class="card">
-            <h4>Featured</h4>
-            <p style="margin: 8px 0 0 0;color: var(--muted);">I'm learning C++, C#, HTML, JavaScript, ETC. And im focused on finding solutions to problems!</p>
+        <article class="hero-card reveal">
+          <div class="hero-card-title">Currently</div>
+          <div class="hero-card-sub">What CLAVO is building</div>
+
+          <div class="hero-stats-grid">
+            <div class="hero-stat">
+              <div class="hero-stat-label">Tooling</div>
+              <div class="hero-stat-value">Overlay UIs</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-label">Engines</div>
+              <div class="hero-stat-value">External / Custom</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-label">Status</div>
+              <div class="hero-stat-value">Available</div>
+            </div>
           </div>
-        </aside>
+        </article>
+      </aside>
     </section>
 
-    <section id="about" style="margin-top:60px">
-      <div class="section-title"><h2>About</h2></div>
-      <div class="card" style="padding:20px;max-width:900px"> 
-        <p style="color:var(--muted)">I am a developer focusing on systems, usermode applications, and applications for other developers. I like clean UIs, reliable code, and elegant solutions to complex problems.</p>
+    <section class="section" id="skills">
+      <h2 class="u-section-title reveal">Core Skillset</h2>
+      <p class="u-section-sub reveal">
+        Deep understanding of how modern games are built, how memory and systems behave, and how to craft tools that feel powerful.
+      </p>
+
+      <div class="skills-grid">
+        <article class="skill-card reveal">
+          <h3 class="skill-title">Game Reverse Engineering</h3>
+          <p class="skill-sub">
+            Inspecting game binaries, structures, and runtime behavior to map systems, find patterns, and design safer tools and experiments.
+          </p>
+          <div class="skill-pills">
+            <div class="skill-pill">Disassembly</div>
+            <div class="skill-pill">Struct Mapping</div>
+            <div class="skill-pill">Signature Work</div>
+            <div class="skill-pill">Pattern Scanning</div>
+          </div>
+        </article>
+
+        <article class="skill-card reveal">
+          <h3 class="skill-title">Low-Level Programming</h3>
+          <p class="skill-sub">
+            Building native libraries and modules in C++ and C#, with a focus on performance, predictability, and stability.
+          </p>
+          <div class="skill-pills">
+            <div class="skill-pill">C++17</div>
+            <div class="skill-pill">C#</div>
+            <div class="skill-pill">Win32</div>
+            <div class="skill-pill">Memory Layout</div>
+          </div>
+        </article>
+
+        <article class="skill-card reveal">
+          <h3 class="skill-title">Overlay &amp; UI Systems</h3>
+          <p class="skill-sub">
+            Clean, monochrome overlays and debug panels that stay out of the way but give you everything you need at a glance.
+          </p>
+          <div class="skill-pills">
+            <div class="skill-pill">ImGui-style UIs</div>
+            <div class="skill-pill">Custom HUDs</div>
+            <div class="skill-pill">Performance</div>
+          </div>
+        </article>
       </div>
     </section>
 
-    <section id="projects" style="margin-top:60px;">
-      <div class="section-title"><h2>Projects</h2></div>
-      <div class="card" style="padding:20px;max-width:990px;">
-        <a class="btn" href="https://imclavo.xyz/" target="_blank" rel="noopener noreferrer">Portfolio</a>
+    <section class="section" id="projects">
+      <h2 class="u-section-title reveal">Selected Work</h2>
+      <p class="u-section-sub reveal">
+        A small curated list of tools and experiments that reflect CLAVO´s approach to design, stability, and clarity.
+      </p>
+
+      <div class="projects-grid">
+        <article class="project-card reveal">
+          <div class="project-badge">Tooling</div>
+          <h3 class="project-title">External Overlay Framework</h3>
+          <p class="project-desc">
+            A lightweight external overlay framework for games, featuring a modular panel system, hot-reloadable themes, and ultra-clean black &amp; white HUDs.
+          </p>
+          <div class="project-tags">
+            <span>#C++</span>
+            <span>#DirectX</span>
+            <span>#Overlay</span>
+          </div>
+          <div class="project-link">Demo UI used as a base for multiple in-house tools.</div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-badge">Reverse Engineering</div>
+          <h3 class="project-title">Runtime Structure Mapper</h3>
+          <p class="project-desc">
+            Utility for mapping and tracking changes in game structures across updates, logging differences and surfacing potential breakpoints.
+          </p>
+          <div class="project-tags">
+            <span>#C++</span>
+            <span>#Analysis</span>
+            <span>#Binary</span>
+          </div>
+          <div class="project-link">Focus: reducing manual work update to update.</div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-badge">Monitoring</div>
+          <h3 class="project-title">Performance Debug HUD</h3>
+          <p class="project-desc">
+            In-game overlay for live CPU/GPU/frame-time metrics, thread usage, and network stats for rapid troubleshooting and profiling.
+          </p>
+          <div class="project-tags">
+            <span>#Profiling</span>
+            <span>#Diagnostics</span>
+          </div>
+          <div class="project-link">Designed for quick visibility with minimal noise.</div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-badge">Visualization</div>
+          <h3 class="project-title">Entity Radar View</h3>
+          <p class="project-desc">
+            A top-down radar view for debugging entity positions, spawns, and interactions inside complex levels.
+          </p>
+          <div class="project-tags">
+            <span>#External View</span>
+            <span>#Data Viz</span>
+          </div>
+          <div class="project-link">Used internally to understand density &amp; flow.</div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-badge">Research</div>
+          <h3 class="project-title">Memory Snapshot Explorer</h3>
+          <p class="project-desc">
+            Tool for capturing, labeling, and diffing memory snapshots to track changes over time and investigate system behaviors.
+          </p>
+          <div class="project-tags">
+            <span>#Reverse Engineering</span>
+            <span>#Tools</span>
+          </div>
+          <div class="project-link">Emphasis on repeatability &amp; organization.</div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-badge">UI</div>
+          <h3 class="project-title">Monochrome Dev Panel</h3>
+          <p class="project-desc">
+            A reusable black &amp; white Dev Panel concept, focused on typography, spacing, and clarity over flashy effects.
+          </p>
+          <div class="project-tags">
+            <span>#UX</span>
+            <span>#Design</span>
+            <span>#ImGui-like</span>
+          </div>
+          <div class="project-link">The aesthetic used for this website.</div>
+        </article>
       </div>
     </section>
 
-    <section id="contact" style="margin-top:60px">
-      <div class="section-title"><h2>Contact</h2></div>
-      <div class="card" style="padding:18px;max-width:700px">
-          <a class="btn" href="https://discord.com/invite/3jBPcKqUW6" target="_blank" rel="noopener noreferrer">Discord</a>
-          <a class="btn" href="https://www.youtube.com/@RealClavo" target="_blank" rel="noopener noreferrer">YouTube</a>
+    <section class="section" id="services">
+      <h2 class="u-section-title reveal">Services</h2>
+      <p class="u-section-sub reveal">
+        CLAVO works with a small number of teams and individuals, focusing on high-impact tooling and technical depth.
+      </p>
+
+      <div class="pricing-grid">
+        <article class="pricing-card reveal">
+          <div class="pricing-badge">Consulting</div>
+          <div class="pricing-name">Code Review Game Tools (External)</div>
+          <div>
+            <div class="pricing-price">€49,99</div>
+            <div class="pricing-period">per session</div>
+          </div>
+          <ul class="pricing-list">
+            <li>High-level code &amp; architecture review</li>
+            <li>Suggestions for safer, cleaner Externals</li>
+            <li>Overlay and tooling recommendations</li>
+          </ul>
+          <a href="#contact" class="pricing-cta">Discuss Review</a>
+        </article>
+
+        <article class="pricing-card reveal">
+          <div class="pricing-badge">Development</div>
+          <div class="pricing-name">Custom Tools</div>
+          <div>
+            <div class="pricing-price">€79,99 - €499,99</div>
+            <div class="pricing-period">per project (baseline)</div>
+          </div>
+          <ul class="pricing-list">
+            <li>External tools and overlays</li>
+            <li>Debug HUDs and profilers</li>
+            <li>Memory-focused utilities</li>
+          </ul>
+          <a href="#contact" class="pricing-cta">Start a Project</a>
+        </article>
+
+        <article class="pricing-card reveal">
+          <div class="pricing-badge">Long-Term</div>
+          <div class="pricing-name">Ongoing Collaboration</div>
+          <div>
+            <div class="pricing-price">€299,99 - €899,99</div>
+            <div class="pricing-period">retainer (custom)</div>
+          </div>
+          <ul class="pricing-list">
+            <li>Long-term game tooling partnership</li>
+            <li>Iterative development &amp; refinement</li>
+            <li>Priority time &amp; dedicated support</li>
+          </ul>
+          <a href="#contact" class="pricing-cta">Talk Retainer</a>
+        </article>
       </div>
     </section>
-</main>
 
-<footer>
-    © <span id="year"></span> Clavo — Built with ❤️ <span style="color:var(--muted)"></span>
+    <section class="section" id="gallery">
+      <h2 class="u-section-title reveal">Showcase</h2>
+      <p class="u-section-sub reveal">
+        Concept shots demonstrating the kind of visuals and layout CLAVO cares about: monochrome, structured, and readable.
+      </p>
+
+      <div class="gallery-grid">
+        <article class="gallery-item reveal">
+          <a href="image.png"><img src="https://cdn.discordapp.com/attachments/1414288674924924993/1440030751356883035/image.png?ex=691caca5&is=691b5b25&hm=8d42aac9f40e67bfb128778b891c3222faa7e42747e2edc6f0afe97d65a115a3&" alt="BlackMenu" style="width:800px;height:200px;"></a>
+          <div class="gallery-caption">External GUI concept clean typography and structured panel layout.</div>
+        </article>
+        <!--<article class="gallery-item reveal">
+          <div class="gallery-fake-shot"></div>
+          <div class="gallery-caption">Overlay prototype for tracking entities, timers, and events.</div>
+        </article>
+        <article class="gallery-item reveal">
+          <div class="gallery-fake-shot"></div>
+          <div class="gallery-caption">Performance debug view with frametime graph and thread breakdown.</div>
+        </article>
+        <article class="gallery-item reveal">
+          <div class="gallery-fake-shot"></div>
+          <div class="gallery-caption">Memory explorer interface sketch with labeled regions and diffs.</div>
+        </article>
+        <article class="gallery-item reveal">
+          <div class="gallery-fake-shot"></div>
+          <div class="gallery-caption">Monochrome dev dashboard for monitoring live sessions.</div>
+        </article>
+        <article class="gallery-item reveal">
+          <div class="gallery-fake-shot"></div>
+          <div class="gallery-caption">Minimal command panel for triggering internal tooling actions.</div>
+        </article>-->
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="matrix reveal">
+        <h2 class="u-section-title">Technical Focus</h2>
+        <p class="u-section-sub">
+          Under the hood, CLAVO´s work stays consistent: clarity in code, careful boundaries, and tools that other developers actually enjoy using.
+        </p>
+
+        <table class="matrix-table">
+          <tr>
+            <td>Language Stack</td>
+            <td>C++ for low-level and kernel development.</td>
+          </tr>
+          <tr>
+            <td>Rendering</td>
+            <td>Overlay surfaces and GUI's using ImGui with a focus on performance and readability.</td>
+          </tr>
+          <tr>
+            <td>Debugging</td>
+            <td>Instrumentation, logging, and runtime toggles that expose what needs to be seen without clutter.</td>
+          </tr>
+          <tr>
+            <td>Reverse Engineering</td>
+            <td>Understanding data flow, structure layout, and behavior for better tools and insight.</td>
+          </tr>
+          <tr>
+            <td>Design Philosophy</td>
+            <td>Keep the UI monochrome, keep the code consistent, and keep the experience smooth.</td>
+          </tr>
+        </table>
+
+        <div class="timeline">
+          <div class="timeline-row">
+            <div class="timeline-dot"></div>
+            <div class="timeline-body">
+              <div class="timeline-label">Early Work</div>
+              <div>Experimenting with small external tools for personal projects and games, learning the limits of engines.</div>
+            </div>
+          </div>
+          <div class="timeline-row">
+            <div class="timeline-dot"></div>
+            <div class="timeline-body">
+              <div class="timeline-label">Reverse Engineering Phase</div>
+              <div>Digging into binaries, structures, and runtime behavior to understand how real-world titles are built.</div>
+            </div>
+          </div>
+          <div class="timeline-row">
+            <div class="timeline-dot"></div>
+            <div class="timeline-body">
+              <div class="timeline-label">Tooling Focus</div>
+              <div>Building overlays, dashboards, and custom utilities that make working with complex systems easier.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="about-grid">
+        <article class="about-panel reveal">
+          <h2 class="u-section-title">About CLAVO</h2>
+          <p class="u-section-sub">
+            A developer who likes seeing what’s behind the curtain and then making clean tools on top of that knowledge.
+          </p>
+
+          <p style="font-size:13px; color:var(--text-soft); line-height:1.7; margin-bottom:16px;">
+            CLAVO is a developer with a focus on low-level systems, clean overlays, and developer-facing tooling.
+            Instead of chasing trends, the work here centers around understanding how things really function and then building utilities that help
+            teams move faster with more insight.
+          </p>
+
+          <p style="font-size:13px; color:var(--text-soft); line-height:1.7; margin-bottom:16px;">
+            The aesthetic stays deliberate: black &amp; white, sharp typography, consistent spacing. The underlying code follows the same idea:
+            predictable, maintainable, and designed to be extended without turning into a mess.
+          </p>
+
+          <div class="u-tag-row">
+            <div class="u-tag">C++</div>
+            <div class="u-tag">Game Systems</div>
+            <div class="u-tag">Reverse Engineering</div>
+            <div class="u-tag">Overlay Design</div>
+          </div>
+        </article>
+
+        <section class="section" id="contact">
+          <aside class="contact-panel reveal">
+            <h2 class="u-section-title">Contact</h2>
+            <p class="u-section-sub">For collaboration, commissions, or questions about tooling and game systems.</p>
+            
+            <div class="contact-list">
+              <div class="contact-item">
+                <div>
+                  <div class="contact-label">Primary</div>
+                  <div class="contact-value">clavospecial@protonmail.com</div>
+                </div>
+                <span class="u-soft">Email</span>
+              </div>
+              
+              <div class="contact-item">
+                <div>
+                  <div class="contact-label">Discord</div>
+                  <div class="contact-value">@realclavo</div>
+                </div>
+                <span class="u-soft">Preferred</span>
+              </div>
+              
+              <div class="contact-item">
+                <div>
+                  <div class="contact-label">ClavoLounge</div>
+                  <div class="contact-value">https://discord.com/invite/3jBPcKqUW6</div>
+                </div>
+                <span class="u-soft">Community</span>
+              </div>
+            </div>
+          </aside>
+        </section>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="footer-left">
+      <div class="footer-pill">CLAVO</div>
+      <div>Developer</div>
+    </div>
+    <div>© <span id="year"></span> CLAVO</div>
   </footer>
 
   <script>
-    // rotate role titles
-    const roles = ['Developer', 'Software Development Student', 'Software Tester', 'Code Debugger'];
-    let i = 0;
-    const rEl = document.getElementById('rotatorText');
-    
-    setInterval(() => {
-    rEl.style.transition = 'opacity 0.6s ease';
-    rEl.style.opacity = 0;
-    
-    setTimeout(() => {
-    i = (i + 1) % roles.length;
-    rEl.textContent = roles[i];
-    rEl.style.opacity = 1;
-    }, 600);
-    }, 3000);
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-    // set year
-    document.getElementById('year').textContent = new Date().getFullYear();
+    const navButtons = document.querySelectorAll(".nav-link");
 
-    // smooth scrolling for header links
-    document.querySelectorAll('header nav a').forEach(a=>a.addEventListener('click', e=>{ e.preventDefault(); const targ=document.querySelector(a.getAttribute('href')); if(targ) targ.scrollIntoView({behavior:'smooth',block:'start'}) }))
+    function scrollToSection(id) {
+      if (id === "top") {window.scrollTo({ top: 0, behavior: "smooth" });return;}
+      const el = document.getElementById(id);
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const offset = rect.top + window.scrollY - 80;
+      window.scrollTo({ top: offset, behavior: "smooth" });
+    }
+
+    navButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const target = btn.getAttribute("data-target");
+        if (target) scrollToSection(target);
+      });
+    });
+
+    function updateActiveNav() {
+      const sections = ["top", "skills", "projects", "services", "gallery", "about", "contact"];
+      let active = "top";
+      const threshold = window.innerHeight * 0.28;
+
+      sections.forEach(id => {
+        const el = id === "top" ? document.documentElement : document.getElementById(id);
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= threshold) active = id;
+      });
+
+      navButtons.forEach(btn => {
+        const t = btn.getAttribute("data-target");
+        if (t === active) btn.classList.add("active");
+        else btn.classList.remove("active");
+      });
+    }
+
+    window.addEventListener("scroll", updateActiveNav);
+    window.addEventListener("load", updateActiveNav);
+
+    const revealEls = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    revealEls.forEach(el => observer.observe(el));
+
+    const canvas = document.getElementById("bg-particles");
+    const ctx = canvas.getContext("2d");
+
+    let particles = [];
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+
+    function resizeCanvas() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width * window.devicePixelRatio;
+      canvas.height = height * window.devicePixelRatio;
+      ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
+      initParticles();
+    }
+
+    function initParticles() {
+      particles = [];
+      const spacing = 60;
+      for (let x = 0; x < width + spacing; x += spacing) {
+        for (let y = 0; y < height + spacing; y += spacing) {
+          particles.push({
+            x: x + (Math.random() * 8 - 4),
+            y: y + (Math.random() * 8 - 4),
+            baseY: y,
+            offset: Math.random() * Math.PI * 2,
+            speed: 0.0009 + Math.random() * 0.0007
+          });
+        }
+      }
+    }
+
+    function renderParticles(timestamp) {
+      ctx.clearRect(0, 0, width, height);
+      ctx.globalAlpha = 0.4;
+      ctx.fillStyle = "#f5f5f5";
+
+      particles.forEach(p => {
+        const wobble = Math.sin(timestamp * p.speed + p.offset) * 4;
+        const px = p.x;
+        const py = p.baseY + wobble;
+
+        ctx.beginPath();
+        ctx.arc(px, py, 1.1, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      requestAnimationFrame(renderParticles);
+    }
+
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+    requestAnimationFrame(renderParticles);
   </script>
 </body>
 </html>
